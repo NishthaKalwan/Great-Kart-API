@@ -11,12 +11,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
-
+from dotenv import load_env
 from django.conf.global_settings import AUTH_PASSWORD_VALIDATORS, AUTH_USER_MODEL, MEDIA_ROOT
 from django.forms import Media
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_env(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -84,9 +85,9 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'GreatKart',
-        'USER' : 'postgres',
-        'PASSWORD' :'nISHTH@2910',
+        'NAME': os.getenv('NAME'),
+        'USER' : os.getenv('USER'),
+        'PASSWORD' :os.getenv('PASSWORD'),
         'HOST' : 'localhost',
         'PORT' :'5432',
     }
